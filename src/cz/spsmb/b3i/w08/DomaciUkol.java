@@ -1,6 +1,11 @@
 package cz.spsmb.b3i.w08;
 
 public class DomaciUkol {
+
+
+    public static double obvodKruhu(double polomer){
+         return 2*3.14*polomer;
+    }
     /***
      * Každý sem napište metodu třídy dle zadání
      Černý
