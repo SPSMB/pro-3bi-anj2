@@ -9,14 +9,29 @@ import java.util.Random;
 // která zkopíruje z pole x do pole y jen prvky se sudou hodnotou
 // a vrátí počet těchto prvků
 public class Ukoly {
-    public static void serad(int[] x, int[] y){
-
+    public static void serad(int[] x, int[] y) {
+        System.arraycopy(x, 0, y, 0, x.length);
+        Arrays.sort(y);
     }
-    public  static int sude(int[] x, int[] y){
-        int out = 0;
 
-        return out;
+    public static int sude(int[] x) {
+        int pocet = 0;
+        for (int i = 0; i < x.length; i++) {
+            if (x[i] % 2 == 0) {
+                pocet++;
+            }
+            int[] y = new int[pocet];
+            for (int z = 0; z < x.length; z++) {
+                if (x[z] % 2 == 0) {
+                    y[z] = x[z];
+                    System.out.println(y[z]);
+                }
+            }
+
+        }
+        return 0;
     }
+
 
     public static void main(String[] args) {
         final int N = 100;
