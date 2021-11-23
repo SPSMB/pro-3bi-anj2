@@ -10,16 +10,29 @@ import java.util.Random;
 // a vrátí počet těchto prvků
 public class Ukoly {
     public static void serad(int[] x, int[] y){
+        System.arraycopy( x, 0, y, 0, x.length );
+        Arrays.sort(y);
 
     }
-    public  static int sude(int[] x, int[] y){
-        int out = 0;
+    public static int sude(int[] x) {
+       int pocet = 0;
+        for (int i = 0; i < x.length; i++) {
+            if (x[i] % 2 == 0) {
+                pocet++;
+            }
+            int[] y = new int[pocet];
+            for (int z = 0; z < x.length; z++) {
+                if (x[z] % 2 == 0) {
+                    y[z] = x[z];
+                    System.out.println(y[z]);
+                }
+            }
 
-        return out;
+        }
+        return 0;
     }
-
     public static void main(String[] args) {
-        final int N = 100;
+        final int N = 10;
         //inicializace polí
         Random rnd = new Random();
         int[] x = new int[N];
