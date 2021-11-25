@@ -10,4 +10,8 @@ package cz.spsmb.b3i.w12.cviceni_vozidlo;
 // vypisovala i počty převodů.
 
 public abstract class JednostopeVozidlo {
+
+    protected String druh;
+    public abstract void vypisCoJsiZac();
+
 }

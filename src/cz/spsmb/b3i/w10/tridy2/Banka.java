@@ -2,15 +2,13 @@ package cz.spsmb.b3i.w10.tridy2;
 
 //Vytvořte třídu bankovní účet s potřebnými datovými prvky a metodami. Ve třídě Banka
 //vytvořte pole účtů, které náhodně inicializujete. Vypište celkovou hotovost v bance.
-
+import cz.spsmb.b3i.w02.FormattedInput;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.Random;
-
 public class Banka {
     final int N_UCTU = 14;
     private BankovniUcet[] ucty;
-
     public Banka() {
         Random rnd = new Random();
         //inicializace pole
@@ -30,7 +28,6 @@ public class Banka {
             );
         }
     }
-
     public BankovniUcet[] getUcty() {
         return ucty;
     }
@@ -42,13 +39,11 @@ public class Banka {
         }
         return out;
     }
-
     public static void main(String[] args) {
         Banka b = new Banka();
         for (BankovniUcet bu:b.getUcty()) {
             System.out.println(bu);
         }
         System.out.println("Zustatek v bance je " +b.getCelkovaHotovost());
-        //Arrays.toString(b.getUcty());
     }
 }

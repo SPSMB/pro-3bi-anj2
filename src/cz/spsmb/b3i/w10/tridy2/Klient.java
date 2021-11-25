@@ -27,7 +27,7 @@ public class Klient {
                 ", prijmeni='" + this.prijmeni + '\'' +
                 ", adresa='" + this.adresa + '\'' +
                 ", datumNarozeni=" +
-                new SimpleDateFormat("dd.MM.YYYY hh:mm:ss a").format(this.datumNarozeni.getTime()) +
+                new SimpleDateFormat("dd.MM.YYYY").format(this.datumNarozeni.getTime()) +
                 '}';
     }
 }
