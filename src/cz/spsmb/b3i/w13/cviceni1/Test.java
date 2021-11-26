@@ -11,7 +11,7 @@ public class Test {
         c.zobraz();//funguje
         System.out.println("↑čtverec↑");
         DutyCtverec d = new DutyCtverec(5);
-        d.zobraz();
+        d.zobraz();//funguje
         System.out.println("↑dutý čtverec↑");
     }
 }
