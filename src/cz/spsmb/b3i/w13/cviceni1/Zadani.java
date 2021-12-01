@@ -6,4 +6,10 @@ package cz.spsmb.b3i.w13.cviceni1;
 //      ***             *************
 //      ***
 public class Zadani {
+    public static void main(String[] args) {
+        Ctverec c = new Ctverec(5);
+        c.zobraz();
+        Usecka u = new Usecka(5);
+        u.zobraz();
+    }
 }
