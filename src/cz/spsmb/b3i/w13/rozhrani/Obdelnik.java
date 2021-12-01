@@ -1,15 +1,5 @@
 package cz.spsmb.b3i.w13.rozhrani;
 
-public class Obdelnik extends Usecka {
-    private int sirka;
+public class Obdelnik {
 
-    public Obdelnik(int delka, int sirka) {
-        super(delka);
-        this.sirka = sirka;
-    }
-
-    @Override
-    public void kdoJsem() {
-        System.out.println("Obdelnik");
-    }
 }
