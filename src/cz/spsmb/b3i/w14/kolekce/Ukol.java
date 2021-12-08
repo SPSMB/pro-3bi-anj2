@@ -15,27 +15,28 @@ public class Ukol {
         ArrayList<Integer> sar = new ArrayList<>(N);
         ArrayList<Integer> ar = new ArrayList<>();
 
-        long start = System.nanoTime();
+        long start = System.currentTimeMillis();
         for (int i = 0; i < N; i++) {
             sar.add(i);
         }
-        long finish = System.nanoTime();
-        long timeElapsed = finish - start;
-        double elapsedTimeInSecond = (double) timeElapsed / 1_000_000_000;
+        long finish = System.currentTimeMillis();
+        long timeElapsed = (finish - start);
 
-        long start1 = System.nanoTime();
+
+        long start1 = System.currentTimeMillis();
         for (int i = 0; i < 1000000; i++) {
             ar.add(i);
         }
-        long finish1 = System.nanoTime();
-        long timeElapsed2 = finish1 - start1;
-        double elapsedTimeInSecond2 = (double) timeElapsed2 / 1_000_000_000;
-        System.out.println("ar = new ArrayList<Integer>(N) " + elapsedTimeInSecond + " Second/s");
-        System.out.println("sar = new ArrayList<Integer>() " + elapsedTimeInSecond2 + " Second/s");
-        if(elapsedTimeInSecond < elapsedTimeInSecond2){
+        long finish1 = System.currentTimeMillis();
+        long timeElapsed2 = (finish1 - start1);
+
+        System.out.println("ar = new ArrayList<Integer>(N) " + timeElapsed );
+        System.out.println("sar = new ArrayList<Integer>() " + timeElapsed2 );
+
+        if(timeElapsed < timeElapsed2){
             System.out.println(ANSI_GREEN+"Rychlejší je ar"+ANSI_RESET);
         }
-         else if(elapsedTimeInSecond2 < elapsedTimeInSecond){
+         else if(timeElapsed2 < timeElapsed){
             System.out.println(ANSI_GREEN+"Rychlejší je sar"+ANSI_RESET);
         }else{
             System.out.println("Oba jsou stejně rychlé");
