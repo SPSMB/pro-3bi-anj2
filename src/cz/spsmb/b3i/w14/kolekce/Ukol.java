@@ -11,13 +11,13 @@ public class Ukol {
     public static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) {
-        int N = 1000000;
-        ArrayList<Integer> sar = new ArrayList<>(N);
-        ArrayList<Integer> ar = new ArrayList<>();
+       int N = 1000000;
+        ArrayList<Integer> ar = new ArrayList<>(N);
+        ArrayList<Integer> sar = new ArrayList<>();
 
         long start = System.currentTimeMillis();
         for (int i = 0; i < N; i++) {
-            sar.add(i);
+            ar.add(i);
         }
         long finish = System.currentTimeMillis();
         long timeElapsed = (finish - start);
@@ -25,7 +25,7 @@ public class Ukol {
 
         long start1 = System.currentTimeMillis();
         for (int i = 0; i < 1000000; i++) {
-            ar.add(i);
+            sar.add(i);
         }
         long finish1 = System.currentTimeMillis();
         long timeElapsed2 = (finish1 - start1);
@@ -36,7 +36,7 @@ public class Ukol {
         if(timeElapsed < timeElapsed2){
             System.out.println(ANSI_GREEN+"Rychlejší je ar"+ANSI_RESET);
         }
-         else if(timeElapsed2 < timeElapsed){
+        else if(timeElapsed2 < timeElapsed){
             System.out.println(ANSI_GREEN+"Rychlejší je sar"+ANSI_RESET);
         }else{
             System.out.println("Oba jsou stejně rychlé");
