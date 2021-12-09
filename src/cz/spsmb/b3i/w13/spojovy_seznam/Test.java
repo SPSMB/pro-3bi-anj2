@@ -33,7 +33,4 @@ public class Test {
         ll.quickSort(ll.getHead(), n);
         ll.printList();
     }
-
-
-
 }
