@@ -11,7 +11,6 @@ public class DutyCtverec extends Ctverec implements IZobrazitelny {
 
     @Override
     public void zobraz() {
-        //https://www.tutorialgateway.org/java-program-to-print-hollow-square-star-pattern/
         for (int i = 0; i < a; i++ )
         {
             for (int j = 0 ; j < a; j++ )

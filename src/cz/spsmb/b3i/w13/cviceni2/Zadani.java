@@ -6,7 +6,7 @@ package cz.spsmb.b3i.w13.cviceni2;
 //      ***
 public class Zadani {
     public static void main(String[] args) {
-        DutyCtverec d = new DutyCtverec(5);
+        DutyCtverec d = new DutyCtverec(9);
         d.zobraz();
     }
 }
