@@ -14,11 +14,11 @@ public class Fronta<E> {
     }
 
     public E remove() {
-        return stack.removeFirst();
+        return stack.removeLast();
     }
 
     public E get() {
-        return stack.getFirst();
+        return stack.getLast();
     }
 
     public boolean isEmpty() {
