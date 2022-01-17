@@ -1,6 +1,6 @@
 package cz.spsmb.b3i.w19.vnorene_tridy;
 // Časté použití v tzv. adaptérech - tam, kde např. z pěti již hotových metod chceme
-// ve vnitřní třídě měnit pouze jednu a nechce se nám čtzři zastiňovat, což by bylo
+// ve vnitřní třídě měnit pouze jednu a nechce se nám čtyři zastiňovat, což by bylo
 // nutné při implementaci rozhraní. Týká se to do Java verze 8, kde nebylo možné
 // deklarovat implicitní těla metod v rozhraní
 
@@ -30,7 +30,11 @@ class Obdelnik extends Usecka4 implements Info {
     }
     class VnitrniJmeno extends Jmeno {
         void kdoJsem() {
-            System.out.println(" " + delka + "x" + sirka);
+            //Všiměte si rozdílu mezi Obdelnik.this (odkaz do vnější třídy)
+            // a this (odkaz do vnitřní třídy, tedy sem)
+            kdoJeTo(Obdelnik.this);
+            kdoJeTo(this);
+            System.out.println(" " + Obdelnik.this.delka + "x" + Obdelnik.this.sirka);
         }
     }
 
