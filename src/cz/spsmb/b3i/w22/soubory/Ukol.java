@@ -11,5 +11,64 @@ package cz.spsmb.b3i.w22.soubory;
 // řádku přesně opíše do souboru kolik.txt a v něm na další řádce uvede,
 // kolik malých písmen na ní bylo
 
+import java.io.*;
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Ukol {
+    public static void main(String[] args) throws IOException {
+
+        /* 1.
+        FileReader fr = new FileReader("pismena.txt");
+        BufferedReader in = new BufferedReader(fr);
+        FileWriter fw = new FileWriter("velky.txt");
+        BufferedWriter out = new BufferedWriter(fw);
+        String radka;
+
+        while((radka = in.readLine()) != null) {
+            System.out.println(radka);
+            out.write(radka.toUpperCase(Locale.ROOT));
+            out.newLine();
+        }
+        fr.close();
+        out.close();
+         */
+
+
+
+         /*     2.
+        File f = new File("pismena.txt");
+        Scanner scanner = new Scanner(f);
+        FileReader fr = new FileReader("pismena.txt");
+        BufferedReader in = new BufferedReader(fr);
+        FileWriter fw = new FileWriter("kolik.txt");
+        BufferedWriter out = new BufferedWriter(fw);
+        String radka;
+        int pom = 0;
+
+        while ((radka = in.readLine()) != null) {
+            System.out.println(radka);
+            out.write(radka);
+            out.newLine();
+        }
+
+        while (scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            for (int i = 0; i < line.length(); i++) {
+                char ch = line.charAt(i);
+                if (Character.isLowerCase(ch)) {
+                    pom++;
+                }
+            }
+            System.out.println(pom);
+            out.write(String.valueOf(pom));
+            out.newLine();
+        }
+            fr.close();
+            out.close();
+        */
+
+    }
 }
+
+
