@@ -12,5 +12,25 @@ package cz.spsmb.b3i.w23;
 // uloží do souboru poleint.bin jako binární čísla (použijte writeInt() ze třídy
 // DataOutputStream). Porovnejte velikosti souborů pole.txt a poleint.bin
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class DomaciUkol {
+    public static void main(String[] args) throws IOException {
+
+        FileWriter fwForm = new FileWriter("pole.txt");
+        PrintWriter form = new PrintWriter(fwForm);
+        for (int i = 0; i < 101; i++) {
+            System.out.print(i + " ");
+            form.print(i + " ");// resp. form.format("%d ", i);
+            if(i % 10 == 0 && i != 0){
+                System.out.println("");
+                form.println(" ");
+            }
+        }
+        form.close();
+
+
+    }
 }
