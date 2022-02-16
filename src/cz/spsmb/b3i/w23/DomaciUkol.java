@@ -25,7 +25,7 @@ public class DomaciUkol {
 
         FileWriter fwForm = new FileWriter("pole.txt");
         PrintWriter form = new PrintWriter(fwForm);
-        for (int i = 0; i < 101; i++) {
+        for (int i = 1; i < 101; i++) {
             System.out.print(i + " ");
             form.print(i + " ");// resp. form.format("%d ", i);
             if(i % 10 == 0 && i != 0){
@@ -48,8 +48,6 @@ public class DomaciUkol {
             }
         }
         dataOut.close();
-
-
         System.out.println(Arrays.deepToString(arr));
         Path path = Paths.get("pole.txt");
         long size = Files.size(path);
