@@ -36,7 +36,7 @@ public class Ukol {
 
 
 
-         /*     2.
+
         File f = new File("pismena.txt");
         Scanner scanner = new Scanner(f);
         FileReader fr = new FileReader("pismena.txt");
@@ -66,7 +66,7 @@ public class Ukol {
         }
             fr.close();
             out.close();
-        */
+
 
     }
 }

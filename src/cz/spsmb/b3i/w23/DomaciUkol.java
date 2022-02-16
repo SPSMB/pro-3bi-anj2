@@ -12,9 +12,13 @@ package cz.spsmb.b3i.w23;
 // uloží do souboru poleint.bin jako binární čísla (použijte writeInt() ze třídy
 // DataOutputStream). Porovnejte velikosti souborů pole.txt a poleint.bin
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Scanner;
+
 
 public class DomaciUkol {
     public static void main(String[] args) throws IOException {
@@ -31,6 +35,32 @@ public class DomaciUkol {
         }
         form.close();
 
+
+        DataOutputStream dataOut = new DataOutputStream(new FileOutputStream("poleint.bin"));
+        Scanner in = new Scanner(new File("pole.txt"));
+        int N = 10;
+        int[][] arr = new int[N][N];
+
+        for(int r=0; r<arr.length; r++) {
+            for(int c=0; c<arr[r].length; c++) {
+                arr[r][c]=in.nextInt();
+                dataOut.writeInt(arr[r][c]);
+            }
+        }
+        dataOut.close();
+
+
+        System.out.println(Arrays.deepToString(arr));
+        Path path = Paths.get("pole.txt");
+        long size = Files.size(path);
+        Path path1 = Paths.get("poleint.bin");
+        long size1 = Files.size(path1);
+
+        if(size < size1){
+            System.out.println("poleint.bin je větší má " + size1 + " bajtů");
+        } else if(size1 <size){
+            System.out.println("pole.txt je větší má " + size1 + " bajtů");
+        }
 
     }
 }
