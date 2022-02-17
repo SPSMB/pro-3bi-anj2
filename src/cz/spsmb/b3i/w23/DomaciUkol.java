@@ -27,7 +27,7 @@ public class DomaciUkol {
         PrintWriter form = new PrintWriter(fwForm);
         for (int i = 1; i < 101; i++) {
             System.out.print(i + " ");
-            form.print(i + " ");// resp. form.format("%d ", i);
+            form.print(i + " ");
             if(i % 10 == 0 && i != 0){
                 System.out.println("");
                 form.println(" ");
@@ -57,7 +57,7 @@ public class DomaciUkol {
         if(size < size1){
             System.out.println("poleint.bin je větší má " + size1 + " bajtů");
         } else if(size1 <size){
-            System.out.println("pole.txt je větší má " + size1 + " bajtů");
+            System.out.println("pole.txt je větší má " + size + " bajtů");
         }
 
     }
