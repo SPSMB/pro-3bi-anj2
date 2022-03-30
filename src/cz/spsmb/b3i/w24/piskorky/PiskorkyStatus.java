@@ -12,6 +12,7 @@ public class PiskorkyStatus implements Serializable {
     Map[][] herniTlacitka;
     //aktivni Hráč se zde automaticky inicializuje na 0 (LOJZA), netřeba inicializovat
     int aktivniHrac;
+    boolean isStarted;
 
     public PiskorkyStatus(int rozmerHraciPlochy) {
         this.rozmerHraciPlochy = rozmerHraciPlochy;
@@ -41,5 +42,8 @@ public class PiskorkyStatus implements Serializable {
                 om.put("player", Integer.valueOf(-1));
             }
         }
+    }
+    public ArrayList<String> getHraci(){
+        return this.hraci;
     }
 }

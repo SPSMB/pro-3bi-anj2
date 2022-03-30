@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -40,7 +41,7 @@ public class PiskorkyFX extends Application {
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
-    private String hostname = "localhost";
+    private String hostname = "192.168.9.43";
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
@@ -69,7 +70,9 @@ public class PiskorkyFX extends Application {
 
     private Label labelKdoTahne = new Label("Táhne: ");
     private Label labelKdoTahne2 = new Label();
-    private HBox panelKdoHraje = new HBox(labelKdoTahne, labelKdoTahne2);
+    private Label labelSeznamHracu = new Label();
+    private Button startBtn = new Button("start");
+    private HBox panelKdoHraje = new HBox(startBtn,labelKdoTahne, labelKdoTahne2,labelSeznamHracu);
 
     public void sputPiskvorkyStatusToServer(){
         try (var socket = new Socket(this.hostname, this.port)) {
@@ -121,14 +124,19 @@ public class PiskorkyFX extends Application {
         System.out.println(!this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName));
         //aktualizace panelu kdo táhne
         this.labelKdoTahne2.setText(this.ps.hraci.get(this.ps.aktivniHrac).toString());
+        this.labelSeznamHracu.setText(this.ps.getHraci().toString());
         for (int i = 0; i < this.ps.rozmerHraciPlochy + 1; i++) {
             for (int j = 0; j < this.ps.rozmerHraciPlochy + 1; j++) {
                 Button b = this.herniTlacitka[i][j];
 //                b.getProperties().clear();
                 b.getProperties().putAll(this.ps.herniTlacitka[i][j]);
                 int player = (int) this.ps.herniTlacitka[i][j].get("player");
-                b.setText(player < 0 ? "" : this.ps.hraci.get(player).toString().substring(0, 1));
-                b.setMouseTransparent(!this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName));
+                if(player >=0){
+                    b.setOnAction(null);
+                    b.setText(this.ps.hraci.get(player).toString().substring(0, 1));
+                }
+
+                b.setMouseTransparent(!(this.ps.hraci.get(ps.aktivniHrac).equals(this.playerName) && this.ps.isStarted));
             }
         }
     }
@@ -158,6 +166,13 @@ public class PiskorkyFX extends Application {
                 }
             }
             BorderPane root = new BorderPane();
+            this.startBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    PiskorkyFX.this.ps.isStarted = true;
+                    PiskorkyFX.this.sputPiskvorkyStatusToServer();
+                }
+            });
             root.setTop(this.panelKdoHraje);
             root.setCenter(gp);
             Scene scene = new Scene(new Group(root));
@@ -211,7 +226,7 @@ public class PiskorkyFX extends Application {
         }
         stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
         System.out.println();
-        int N = 3;
+        int N = 5;
         System.out.format("verticalWin:%b, horizontalWin:%b, diagonalwin:%b, isReverseDiagonalWin:%b%n",
                 this.isVerticalWin(i, j, N),
                 this.isHorizontalWin(i, j, N),
@@ -261,7 +276,7 @@ public class PiskorkyFX extends Application {
                 }
             }
         }
-        stisknuteTlacitko.setOnAction(null);
+
         System.out.println("Vypis");
         //vypis
         for (i = 0; i < this.ps.rozmerHraciPlochy; i++) {
