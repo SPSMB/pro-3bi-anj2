@@ -4,13 +4,17 @@ import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
 import java.time.LocalDateTime;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ServerThread extends Thread {
     protected Socket socket;
+    java.util.Timer timer = new Timer();
     int request = 0;
 
     public ServerThread(Socket clientSocket) {
         this.socket = clientSocket;
+
     }
     private boolean isVerticalWin(int radek, int sloupec, int n) {
         int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
@@ -139,18 +143,30 @@ public class ServerThread extends Thread {
 
                                 System.out.println("Win");
                                 PiskorkyServer.ps.isEnded = true;
+//reset piskvorek po skonceni 3s
+                                timer.schedule(new TimerTask() {
+                                                   @Override
+                                                   public void run() {
+                                                       PiskorkyServer.ps.clean();
+                                                   }
+                                               },3000
+                                );
+
                                 break lab_for1;
                             }
                         }
                     }
-                    if(!PiskorkyServer.ps.isEnded){
-                        //přepnutí hráče
-                        if (++PiskorkyServer.ps.aktivniHrac >= PiskorkyServer.ps.hraci.size()) {
-                            PiskorkyServer.ps.aktivniHrac = 0;
-                        }
-                        //stisknuteTlacitko.getProperties().put("player", this.ps.aktivniHrac);
-                    }
+                  PiskorkyServer.ps.prepnutiHrace();
                     System.out.println(PiskorkyServer.ps.getHraci());
+                    //        //vypis
+                    for (int i = 0; i < PiskorkyServer.ps.rozmerHraciPlochy; i++) {
+                        for (int j = 0; j < PiskorkyServer.ps.rozmerHraciPlochy; j++) {
+                            //System.out.format(" %02d ",this.ps.herniPlochaHracu[i][j]);
+                            int player = (int) PiskorkyServer.ps.herniTlacitka[i][j].get("player");
+                            System.out.format("%02d ", player);
+                        }
+                        System.out.println();
+                    }
                 } catch (ClassNotFoundException | IOException e) {
                     e.printStackTrace();
                     System.out.println("Tadik " + e.getMessage());
