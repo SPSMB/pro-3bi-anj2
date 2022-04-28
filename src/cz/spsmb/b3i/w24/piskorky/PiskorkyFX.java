@@ -36,26 +36,29 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-//File->Project Structure->Libraries, Maven,  org.openjfx:javafx-maven-plugin:0.0.5
+//File->Project Structure->Libraries, Maven,  org.openjfx:javafx-maven-plugi
+// n:0.0.5
 //org.openjfx:javafx-archetype-fxml:0.0.5
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyFX extends Application {
-    private final String VERSION = "1.12";
+    private final String VERSION = "1.13";
     private final int MAX_PLAYER_LENGHT = 8;
     private final int MIN_PLAYER_LENGHT = 3;
     private final String TITULEK = "Piškorky" + this.VERSION;
     private PiskorkyStatus ps;
     private Button[][] herniTlacitka;
-    private String hostname = "192.168.9.43";
+    private String hostname = "192.168.2.106";
     //private String hostname = "192.168.31.162";
-    //private String hostname = "localhost";
+    // private String hostname = "localhost";
     private int port = 8081;
     private Timeline tl;
     private Stage playerNameStage;
     private TextField playerNameTextField;
     private String playerName;
+    private Socket socket;
 
     public PiskorkyFX() {
+        this.initSocket();
         this.setPiskvorkyStatusFromServer();
         if (!this.ps.VERSION.equals(this.VERSION)){
             Stage kick = new Stage();
@@ -65,7 +68,6 @@ public class PiskorkyFX extends Application {
             kick.setScene(skick);
             kick.showAndWait();
             Platform.exit();
-
         }
 
         this.playerNameStage = new Stage();
@@ -92,9 +94,16 @@ public class PiskorkyFX extends Application {
     private Button startBtn = new Button("start");
     private HBox panelKdoHraje = new HBox(startBtn,labelKdoTahne, labelKdoTahne2,labelSeznamHracu);
 
+    public void initSocket(){
+        try {
+            this.socket = new Socket(this.hostname, this.port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void sputPiskvorkyStatusToServer(){
         try {
-            Socket socket = new Socket(this.hostname, this.port);
             OutputStream writer = socket.getOutputStream();
             writer.write(30);
             ObjectOutputStream oos = new ObjectOutputStream(writer);
@@ -107,7 +116,6 @@ public class PiskorkyFX extends Application {
     }
     public void setPiskvorkyStatusFromServer() {
         try {
-            Socket socket = new Socket(this.hostname, this.port);
             OutputStream writer = socket.getOutputStream();
             writer.write(20);
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
