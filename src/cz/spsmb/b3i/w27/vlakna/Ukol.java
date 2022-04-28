@@ -8,4 +8,7 @@ package cz.spsmb.b3i.w27.vlakna;
 // Použijte co největší počet hodů a vlákna pro urychlení výpočtu.
 // Změřte dobu běhu pro verzi s vlákny a verzi bez vláken.
 public class Ukol {
+    //nemám
+    //Es tut mir Leid!
+
 }

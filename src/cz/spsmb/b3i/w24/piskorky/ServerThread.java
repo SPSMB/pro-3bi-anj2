@@ -7,7 +7,14 @@ import java.time.LocalDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * hlavní vlákno které se spustí pokud hráč naváže spojení se serverem
+ * toto vlákno náleží tomuto hrači do jeho odpojení
+ */
 public class ServerThread extends Thread {
+    /**
+     * vnitřní  třída zajišťující že nekatviní hráči budou po čase {@link PiskorkyServer.ps.TIMEOUT} vyhozeni ze hry
+     */
     private class Helper extends TimerTask implements Serializable {
         @Override
         public void run() {
@@ -19,6 +26,10 @@ public class ServerThread extends Thread {
     java.util.Timer timer = new Timer();
     int request = 0;
 
+    /**
+     * @param clientSocket instance socketu získaného pomocí metody accept() instance třídy ServerSocket
+     *
+     */
     public ServerThread(Socket clientSocket) {
         this.socket = clientSocket;
         try {
@@ -28,6 +39,13 @@ public class ServerThread extends Thread {
         }
     }
 
+    /**
+     * metoda vrátí true pokud hráč v hrací ploše od bodu {@link radek}, {@link sloupec} dolů zaškrtne {@link n} políček
+     * @param radek
+     * @param sloupec
+     * @param n
+     * @return vratí true pokud hráč vyhraje
+     */
     private boolean isVerticalWin(int radek, int sloupec, int n) {
         int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
         if (aktualniHrac < 0) {
@@ -44,6 +62,13 @@ public class ServerThread extends Thread {
         return true;
     }
 
+    /**
+     * metoda vrátí true pokud hráč v hrací ploše od bodu {@link radek}, {@link sloupec} doprava zaškrtne {@link n} políček
+     * @param radek
+     * @param sloupec
+     * @param n
+     * @return vrátí true pokud hráč vyhraje
+     */
     private boolean isHorizontalWin(int radek, int sloupec, int n) {
         int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
         if (aktualniHrac < 0) {
@@ -60,6 +85,13 @@ public class ServerThread extends Thread {
         return true;
     }
 
+    /**
+     * metoda vrátí true pokud hráč v hrací ploše od bodu {@link radek}, {@link sloupec} diagónálně dolů zaškrtne {@link n} políček
+     * @param radek
+     * @param sloupec
+     * @param n
+     * @return vrátí true pokud hráč vyhraje
+     */
     private boolean isDiagonalWin(int radek, int sloupec, int n) {
         int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
         if (aktualniHrac < 0) {
@@ -80,6 +112,13 @@ public class ServerThread extends Thread {
         return true;
     }
 
+    /**
+     * metoda vrátí true pokud hráč v hrací ploše od bodu {@link radek}, {@link sloupec} diagónálně nahoru zaškrtne {@link n} políček
+     * @param radek
+     * @param sloupec
+     * @param n
+     * @return vrátí true pokud hráč vyhraje
+     */
     private boolean isReverseDiagonalWin(int radek, int sloupec, int n) {
         int aktualniHrac = (int) PiskorkyServer.ps.herniTlacitka[radek][sloupec].get("player");
         if (aktualniHrac < 0) {
@@ -99,6 +138,7 @@ public class ServerThread extends Thread {
         }
         return true;
     }
+
 
     @Override
     public void run() {
