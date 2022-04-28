@@ -9,11 +9,21 @@ import java.net.SocketException;
 import java.time.LocalDateTime;
 import java.util.TimerTask;
 
+/**
+ * je to server pro naše geniální piškótky
+ */
 //add --module-path "Y:\stemberk\verejne_zaci\javafx-sdk-17.0.1\lib" --add-modules javafx.controls,javafx.fxml
 public class PiskorkyServer {
+    /**
+     * stavový popis našeho geniálního programu
+     */
     public static PiskorkyStatus ps;
 
 
+    /**
+     * @param args argumenty tento skvělý program zatím nepoužívá
+     * @throws IOException když nedojde k navázání metody pomocí třídy IOSocket
+     */
     public static void main(String[] args) throws IOException {
         PiskorkyServer.ps = new PiskorkyStatus(15);
         int port = 8081;
