@@ -50,16 +50,21 @@ import java.util.regex.Pattern;
 // logické spojky
 // XY	            - X ihned za Y
 // X|Y	            - X neboY
-// (X)              - párování logických spojek slouží také k zapamatování při nahrazování pomocí \1 až \\n/p>
+
+// seskupování:
+// (X)                - skupina, slouží k zapamatování při nahrazování pomocí \1 až \\n/p>
+// (?'jmeno_skupiny') - pojmenování skupiny
+// (?:X)              - seskupí, ale nezapamatuje
+
 
 // příklady:
 // .*1
 // \bpro\b
 // \b(a|i|o|u)\b
 // \d+\.\d+\.\d+\.\d+
-// \d{1,3}\.){3}\d{1,3}
-// http://[a-zA-Z_.]+
-//  (http://)?w{3}[a-zA-Z_.]+\.cz
+// (\d{1,3}\.){3}\d{1,3}
+// http:\/\/[a-zA-Z_.]+
+//  (http:\/\/)?w{3}[a-zA-Z_.]+\.cz
 // [a-zA-Z_.]+@[a-zA-Z_.]+
 
 
